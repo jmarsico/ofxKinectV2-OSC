@@ -3,6 +3,8 @@
 void Skeleton::init(string _bodyId) {
 	bodyId = _bodyId;
     resetFreshness();
+    path.setMode(ofPath::POLYLINES);
+
 }
 
 void Skeleton::setSmoothing(SmoothingTechnique technique) {
@@ -31,6 +33,52 @@ void Skeleton::setHand(Hand hand) {
 	} else {
 		setRightHand(hand);
 	}
+}
+
+
+ofPath Skeleton::getPath(){
+    
+    path.clear();
+    
+    addBoneLine(getHead(), getNeck());
+    addBoneLine(getNeck(), getSpineShoulder());
+    addBoneLine(getSpineShoulder(), getSpineMid());
+    addBoneLine(getSpineMid(), getSpineBase());
+    addBoneLine(getSpineShoulder(), getShoulderRight());
+    addBoneLine(getSpineShoulder(), getShoulderLeft());
+    addBoneLine(getSpineBase(), getHipRight());
+    addBoneLine(getSpineBase(), getHipLeft());
+    
+    addBoneLine(getShoulderRight(), getElbowRight());
+    addBoneLine(getElbowRight(), getWristRight());
+    addBoneLine(getWristRight(), getHandRight());
+    addBoneLine(getHandRight(), getHandTipRight());
+    addBoneLine(getWristRight(), getThumbRight());
+    
+    addBoneLine(getShoulderLeft(), getElbowLeft());
+    addBoneLine(getElbowLeft(), getWristLeft());
+    addBoneLine(getWristLeft(), getHandLeft());
+    addBoneLine(getHandLeft(), getHandTipLeft());
+    addBoneLine(getWristLeft(), getThumbLeft());
+    
+    addBoneLine(getHipRight(), getKneeRight());
+    addBoneLine(getKneeRight(), getAnkleRight());
+    addBoneLine(getAnkleRight(), getFootRight());
+    
+    addBoneLine(getHipLeft(), getKneeLeft());
+    addBoneLine(getKneeLeft(), getAnkleLeft());
+    addBoneLine(getAnkleLeft(), getFootLeft());
+    
+
+    return path;
+}
+
+
+void Skeleton::addBoneLine(Joint a, Joint b){
+    //draw the neck
+    path.lineTo(a.getPoint());
+    path.lineTo(b.getPoint());
+    path.close();
 }
 
 void Skeleton::setJoint(Joint joint) {

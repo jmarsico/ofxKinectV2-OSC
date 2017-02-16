@@ -42,6 +42,7 @@ protected:
 	Skeleton* skeleton;
     ofTrueTypeFont font;
     string normalReport;
+    
 
 	bool isDrawHandsEnabled, isDrawBonesEnabled, isDrawJointsEnabled, isDrawRangesEnabled, isFontEnabled;
 };

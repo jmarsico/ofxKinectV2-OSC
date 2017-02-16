@@ -19,6 +19,8 @@ public:
 	void setJoint(Joint joint);
 	
 	string getBodyId();
+    ofPath getPath();
+    
 	Hand getLeftHand();
 	Hand getRightHand();
 
@@ -52,8 +54,15 @@ public:
     ofRectangle getRightHandRange();
     ofVec3f getLeftHandNormal();
     ofVec3f getRightHandNormal();
+    
+    ofPath path;
 
 protected:
+    
+    
+    void addBoneLine(Joint a, Joint b);
+    
+    
     void setLeftHand(Hand &hand);
     void setRightHand(Hand &hand);
     void setThumbRight(Joint &joint);
