@@ -75,6 +75,8 @@ public:
     vector<double> getHandTipRightLocal();
     vector<double> getThumbRightLocal();
     vector<double> getThumbLeftLocal();
+    
+    int getFreshness() {return freshness;}
 
     
     
